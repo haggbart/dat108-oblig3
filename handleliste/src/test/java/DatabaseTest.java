@@ -8,11 +8,14 @@ import java.util.List;
 
 public class DatabaseTest {
 
+
+
     @Test
     void database() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("handleliste");
 
         EntityManager em = emf.createEntityManager();
+
 
 
 
