@@ -24,6 +24,10 @@
             <property name="hibernate.connection.password" value="postgres"/>
             <property name="hibernate.default_schema" value="dat108oblig3"/>
 
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+
         </properties>
     </persistence-unit>
 </persistence>
