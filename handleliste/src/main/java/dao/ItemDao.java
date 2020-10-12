@@ -10,7 +10,7 @@ import java.util.List;
 @Stateless
 public class ItemDao {
 
-    @PersistenceContext(name = "studentPU")
+    @PersistenceContext
     private EntityManager em;
 
     public Item get(int id) {
@@ -21,7 +21,7 @@ public class ItemDao {
         return em.createNamedQuery("Item.getAll", Item.class).getResultList();
     }
 
-    public void add(Item item) {
+    public void save(Item item) {
         em.persist(item);
     }
 
