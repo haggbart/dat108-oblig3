@@ -45,9 +45,9 @@ class ItemDaoTest {
 
     @Test
     void delete() {
-        Item item = itemDao.get(1);
+        Item item = itemDao.get(12);
         assertNotNull(item);
-        itemDao.delete(item);
+        itemDao.delete(12);
 
         item = itemDao.get(0);
         assertNull(item);

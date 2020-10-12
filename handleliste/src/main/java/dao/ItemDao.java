@@ -3,29 +3,61 @@ package dao;
 import model.Item;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.util.List;
-import java.util.Optional;
+import java.util.function.Consumer;
 
-public class ItemDao implements Dao<Item> {
+public class ItemDao {
 
-    private final EntityManager em = emf.createEntityManager();
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("handleliste");
+    private EntityManager em;
 
-    @Override
     public Item get(int id) {
-        return Optional.ofNullable(em.find(Item.class, id)).orElse(null);
+        em = emf.createEntityManager();
+        try {
+            return em.find(Item.class, id);
+
+        } finally {
+            em.close();
+        }
     }
 
-    @Override
     public List<Item> getAll() {
-        return em.createNamedQuery("Item.getAll", Item.class).getResultList();
+        em = emf.createEntityManager();
+        try {
+            return em.createNamedQuery("Item.getAll", Item.class).getResultList();
+
+        } finally {
+            em.close();
+        }
     }
 
-    @Override
     public void add(Item item) {
-       executeInsideTransaction(em, em -> em.persist(item));
+        executeInsideTransaction(em -> em.persist(item));
     }
 
-    public void delete(Item item) {
-        executeInsideTransaction(em, em -> em.remove(item));
+    public void delete(int id) {
+        executeInsideTransaction(em -> {
+            Item item = em.find(Item.class, id);
+            if (item == null) return;
+            em.remove(item);
+        });
+    }
+
+    public void executeInsideTransaction(Consumer<EntityManager> action) {
+        em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            action.accept(em);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
     }
 }
