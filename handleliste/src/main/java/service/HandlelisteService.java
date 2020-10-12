@@ -19,8 +19,6 @@ public class HandlelisteService {
     @EJB
     private ItemDao itemDao;
 
-    public HandlelisteService() {}
-
     public void addItem(HttpServletResponse response, String beskrivelse) throws IOException {
 
         beskrivelse = StringEscapeUtils.escapeHtml4(beskrivelse).strip();
@@ -36,7 +34,9 @@ public class HandlelisteService {
 
     public void deleteItem(HttpServletResponse response, String itemId) throws IOException {
         int id = Integer.parseInt(itemId);
-        itemDao.delete(id);
+        Item item = itemDao.get(id);
+        if (item != null)
+            itemDao.delete(item);
         response.sendRedirect("handleliste");
     }
 
