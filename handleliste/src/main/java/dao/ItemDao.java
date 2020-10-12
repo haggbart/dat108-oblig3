@@ -25,8 +25,7 @@ public class ItemDao {
         em.persist(item);
     }
 
-    public void delete(int id) {
-        Item item = em.find(Item.class, id);
+    public void delete(Item item) {
         em.remove(item);
     }
 }
