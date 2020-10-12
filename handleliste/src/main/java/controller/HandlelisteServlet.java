@@ -1,7 +1,6 @@
 package controller;
 
 
-import dao.ItemDao;
 import service.HandlelisteService;
 
 import javax.ejb.EJB;
@@ -16,36 +15,23 @@ import java.io.IOException;
 public class HandlelisteServlet extends HttpServlet {
 
     @EJB
-    private ItemDao itemDao;
+    private HandlelisteService handlelisteService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HandlelisteService handlelisteService = new HandlelisteService(itemDao, request, response);
-
         String beskrivelse = request.getParameter("beskrivelse");
         if (beskrivelse != null) {
-            handlelisteService.addItem(beskrivelse);
+            handlelisteService.addItem(response, beskrivelse);
             return;
         }
 
         String itemId = request.getParameter("item");
         if (itemId != null) {
-            handlelisteService.deleteItem(itemId);
+            handlelisteService.deleteItem(response, itemId);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//        response.setContentType("text/plain");
-//        PrintWriter out = response.getWriter();
-
-//        List<Item> handleliste = itemDao.getAll();
-//        handleliste.forEach(out::println);
-//
-//        List<Item> handleliste = itemDao.getAll();
-//        handleliste.forEach(System.out::println);
-
-        HandlelisteService handlelisteService = new HandlelisteService(itemDao, request, response);
-        handlelisteService.getItems();
+        handlelisteService.getItems(request, response);
     }
 }

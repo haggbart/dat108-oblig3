@@ -4,6 +4,8 @@ import dao.ItemDao;
 import model.Item;
 import org.apache.commons.text.StringEscapeUtils;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,21 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@Stateless
 public class HandlelisteService {
 
-    private final ItemDao itemDao;
+    @EJB
+    private ItemDao itemDao;
 
-    private final HttpServletRequest request;
-    private final HttpServletResponse response;
+    public HandlelisteService() {}
 
-
-    public HandlelisteService(ItemDao itemDao, HttpServletRequest request, HttpServletResponse response) {
-        this.itemDao = itemDao;
-        this.request = request;
-        this.response = response;
-    }
-
-    public void addItem(String beskrivelse) throws IOException {
+    public void addItem(HttpServletResponse response, String beskrivelse) throws IOException {
 
         beskrivelse = StringEscapeUtils.escapeHtml4(beskrivelse).strip();
         if (beskrivelse.isEmpty() || beskrivelse.length() >= 30) {
@@ -38,13 +34,13 @@ public class HandlelisteService {
         response.sendRedirect("handleliste");
     }
 
-    public void deleteItem(String itemId) throws IOException {
+    public void deleteItem(HttpServletResponse response, String itemId) throws IOException {
         int id = Integer.parseInt(itemId);
         itemDao.delete(id);
         response.sendRedirect("handleliste");
     }
 
-    public void getItems() throws ServletException, IOException {
+    public void getItems(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<Item> handleliste = itemDao.getAll();
         request.setAttribute("handleliste", handleliste);
