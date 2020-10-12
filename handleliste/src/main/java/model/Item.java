@@ -3,6 +3,7 @@ package model;
 import javax.persistence.*;
 
 @Entity
+@Table(schema = "dat108oblig3", name = "item")
 @NamedQuery(name = "Item.getAll", query = "select i from Item i")
 public class Item {
 

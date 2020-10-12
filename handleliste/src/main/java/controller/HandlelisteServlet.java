@@ -1,8 +1,10 @@
 package controller;
 
 
+import dao.ItemDao;
 import service.HandlelisteService;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,19 +15,12 @@ import java.io.IOException;
 @WebServlet(name = "HandlelisteServlet", urlPatterns = "/handleliste")
 public class HandlelisteServlet extends HttpServlet {
 
-    @Override
-    public void init() throws ServletException {
-        System.out.println("init");
-    }
-
-    @Override
-    public void destroy() {
-        System.out.println("destroy");
-    }
+    @EJB
+    private ItemDao itemDao;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HandlelisteService handlelisteService = new HandlelisteService(request, response);
+        HandlelisteService handlelisteService = new HandlelisteService(itemDao, request, response);
 
         String beskrivelse = request.getParameter("beskrivelse");
         if (beskrivelse != null) {
@@ -41,7 +36,16 @@ public class HandlelisteServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HandlelisteService handlelisteService = new HandlelisteService(request, response);
+//        response.setContentType("text/plain");
+//        PrintWriter out = response.getWriter();
+
+//        List<Item> handleliste = itemDao.getAll();
+//        handleliste.forEach(out::println);
+//
+//        List<Item> handleliste = itemDao.getAll();
+//        handleliste.forEach(System.out::println);
+
+        HandlelisteService handlelisteService = new HandlelisteService(itemDao, request, response);
         handlelisteService.getItems();
     }
 }

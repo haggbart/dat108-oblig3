@@ -13,11 +13,14 @@ import java.util.List;
 
 public class HandlelisteService {
 
-    private static final ItemDao itemDao = new ItemDao();
+    private final ItemDao itemDao;
+
     private final HttpServletRequest request;
     private final HttpServletResponse response;
 
-    public HandlelisteService(HttpServletRequest request, HttpServletResponse response) {
+
+    public HandlelisteService(ItemDao itemDao, HttpServletRequest request, HttpServletResponse response) {
+        this.itemDao = itemDao;
         this.request = request;
         this.response = response;
     }
