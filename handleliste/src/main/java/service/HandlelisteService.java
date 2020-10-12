@@ -28,12 +28,14 @@ public class HandlelisteService {
         }
 
         Item item = new Item(beskrivelse);
-        itemDao.add(item);
+        itemDao.save(item);
         response.sendRedirect("handleliste");
     }
 
     public void deleteItem(HttpServletResponse response, String itemId) throws IOException {
-        int id = Integer.parseInt(itemId);
+        int id = tryParse(itemId);
+        if (id == -1) return;
+
         Item item = itemDao.get(id);
         if (item != null)
             itemDao.delete(item);
@@ -47,5 +49,14 @@ public class HandlelisteService {
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/handleliste.jsp");
         requestDispatcher.forward(request, response);
+    }
+
+
+    public static int tryParse(String s) {
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException ignored) {
+            return -1;
+        }
     }
 }
