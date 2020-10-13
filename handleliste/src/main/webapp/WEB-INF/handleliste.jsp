@@ -3,30 +3,40 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/fontawesome.all.js"></script>
     <title>Handleliste</title>
 </head>
 <body>
 
-<div class="container">
-    <h1>Min handleliste</h1>
 
-    <div>
+<div class="container card shadow-lg mx-auto mt-5">
+    <div class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">Handleliste</h4>
+
         <form action="handleliste" method="post">
-            <button type="submit">Legg til</button>
-            <label><input type="text" name="beskrivelse"></label>
-        </form>
-    </div>
-    <div>
-        <form action="handleliste" method="post">
-        <jsp:useBean id="handleliste" scope="request" type="java.util.List<model.Item>"/>
-        <c:forEach items="${handleliste}" var="item">
-            <div>
-                <label><button type="submit" name="item" value="${item.id}">Slett</button>${item}</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                </div>
+                <input type="text" name="beskrivelse" class="form-control" placeholder="Legg til">
             </div>
-        </c:forEach>
+        </form>
+
+        <form action="handleliste" method="post">
+            <ul class="list-group mx-auto">
+
+                <c:forEach items="${requestScope.handleliste}" var="item">
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>${item}</span>
+                        <button type="submit" name="item" value="${item.id}" class="btn">
+                            <i class="far fa-trash-alt"></i></button>
+                    </li>
+                </c:forEach>
+            </ul>
         </form>
     </div>
-
 </div>
 
 </body>

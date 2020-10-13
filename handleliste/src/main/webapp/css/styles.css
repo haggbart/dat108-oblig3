@@ -1,0 +1,11 @@
+body {
+    background: #eeedec;
+}
+
+.container {
+    max-width: 400px;
+}
+
+li {
+    border-top: 0 none;
+}
