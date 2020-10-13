@@ -4,6 +4,7 @@ package controller;
 import service.HandlelisteService;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,17 +22,22 @@ public class HandlelisteServlet extends HttpServlet {
 
         String beskrivelse = request.getParameter("beskrivelse");
         if (beskrivelse != null) {
-            handlelisteService.addItem(response, beskrivelse);
+            handlelisteService.addItem(beskrivelse);
+            response.sendRedirect("handleliste");
             return;
         }
 
         String itemId = request.getParameter("item");
         if (itemId != null) {
-            handlelisteService.deleteItem(response, itemId);
+            handlelisteService.deleteItem(itemId);
         }
+        response.sendRedirect("handleliste");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        handlelisteService.getItems(request, response);
+        request.setAttribute("handleliste", handlelisteService.getItems());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/handleliste.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

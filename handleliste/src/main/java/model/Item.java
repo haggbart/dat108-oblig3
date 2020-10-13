@@ -3,7 +3,7 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = "Item.getAll", query = "select i from Item i")
+@NamedQuery(name = "Item.getAll", query = "select i from Item i order by i.id")
 public class Item {
 
     @Id
