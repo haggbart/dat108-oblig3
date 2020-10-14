@@ -1,6 +1,6 @@
-package helper;
+package no.hvl.dat108.handleliste.helper;
 
-public class Utils {
+public class Utilities {
 
     public static int tryParse(String s) {
         try {

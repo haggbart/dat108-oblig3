@@ -19,14 +19,14 @@
         <p class="text-danger text-center">${sessionScope.message}</p>
             <c:remove var="message" scope="session"/>
         </c:if>
-        <form method="post" action="login">
+        <form method="post" action="login" autofocus>
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fas fa-user-lock"></i> </span>
                     </div>
 
-                    <input class="form-control" type="password" name="password" placeholder="Passord" required>
+                    <input class="form-control" type="password" name="password" placeholder="Passord" autofocus required>
                 </div>
             </div>
             <div class="form-group">

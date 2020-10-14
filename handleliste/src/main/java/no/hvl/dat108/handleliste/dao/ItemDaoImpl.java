@@ -1,6 +1,7 @@
-package dao;
+package no.hvl.dat108.handleliste.dao;
 
-import model.Item;
+
+import no.hvl.dat108.handleliste.model.Item;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -8,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Stateless
-public class ItemDao {
+public class ItemDaoImpl implements ItemDao {
 
     @PersistenceContext
     private EntityManager em;

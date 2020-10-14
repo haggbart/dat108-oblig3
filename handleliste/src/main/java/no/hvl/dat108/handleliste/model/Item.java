@@ -1,4 +1,4 @@
-package model;
+package no.hvl.dat108.handleliste.model;
 
 import javax.persistence.*;
 

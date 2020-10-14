@@ -19,7 +19,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-pen"></i></span>
                 </div>
-                <input type="text" name="beskrivelse" class="form-control" placeholder="Legg til">
+                <input type="text" name="beskrivelse" class="form-control" placeholder="Legg til" autocomplete="off" required>
             </div>
         </form>
 
@@ -31,7 +31,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span>${item}</span>
                         <button type="submit" name="item" value="${item.id}" class="btn">
-                            <i class="far fa-trash-alt"></i></button>
+                            <i class="fas fa-trash-alt text-muted"></i></button>
                     </li>
                 </c:forEach>
             </ul>

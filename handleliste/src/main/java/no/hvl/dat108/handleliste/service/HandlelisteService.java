@@ -1,13 +1,13 @@
-package service;
+package no.hvl.dat108.handleliste.service;
 
-import dao.ItemDao;
-import model.Item;
+import no.hvl.dat108.handleliste.dao.ItemDao;
+import no.hvl.dat108.handleliste.model.Item;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
 
-import static helper.Utils.tryParse;
+import static no.hvl.dat108.handleliste.helper.Utilities.tryParse;
 import static org.apache.commons.text.StringEscapeUtils.escapeHtml4;
 
 @Stateless
