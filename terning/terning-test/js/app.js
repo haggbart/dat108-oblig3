@@ -42,7 +42,7 @@ class DiceController {
  * @author Le beste gruppen
  */
 class Dice {
-    roll = () => Math.round(Math.random() * 6 + 1).toString();
+    roll = () => ((Math.random() * 6 + 1)|0).toString();
 }
 
 const controller = new DiceController("root");
