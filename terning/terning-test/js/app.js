@@ -18,8 +18,8 @@ class DiceController {
         this.rollDice = this.rollDice.bind(this);
 
         this.root = document.getElementById(idElement);
-        this.button = this.root.querySelector('button[data-dicebutton]')
-        this.output = this.root.querySelector('span[data-diceoutput]');
+        this.button = this.root.querySelector('*[data-dicebutton]')
+        this.output = this.root.querySelector('*[data-diceoutput]');
         this.dice = new Dice();
     }
 
@@ -32,7 +32,7 @@ class DiceController {
 
 
     /**
-     * Ruller terning og endrer innholdet i html span med custom data-attributt, "data-diceoutput"
+     * Ruller terning og endrer innholdet i html-elementet som har custom data-attributt, "data-diceoutput"
      */
     rollDice() {
         this.output.innerHTML = this.dice.roll();
