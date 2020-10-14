@@ -1,4 +1,4 @@
-package helper;
+package no.hvl.dat108.handleliste;
 
 public class Handleliste {
     public static class UrlPattern {

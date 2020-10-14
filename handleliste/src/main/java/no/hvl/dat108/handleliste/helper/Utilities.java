@@ -1,4 +1,4 @@
-package helper;
+package no.hvl.dat108.handleliste.helper;
 
 public class Utilities {
 

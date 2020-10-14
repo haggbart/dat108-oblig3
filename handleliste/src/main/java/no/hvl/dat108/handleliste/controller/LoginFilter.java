@@ -1,6 +1,6 @@
-package controller;
+package no.hvl.dat108.handleliste.controller;
 
-import helper.Handleliste.*;
+import no.hvl.dat108.handleliste.Handleliste.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static helper.Sessions.getNewSession;
-import static helper.Sessions.isLoggedIn;
+import static no.hvl.dat108.handleliste.helper.Sessions.getNewSession;
+import static no.hvl.dat108.handleliste.helper.Sessions.isLoggedIn;
 
 @WebFilter(filterName = "LoginFilter", urlPatterns = "/handleliste")
 public class LoginFilter implements Filter {

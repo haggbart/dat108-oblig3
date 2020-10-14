@@ -8,6 +8,10 @@
         <param-name>passord</param-name>
         <param-value>1234</param-value>
     </context-param>
+    <context-param>
+        <param-name>sessionTimeoutSeconds</param-name>
+        <param-value>5</param-value>
+    </context-param>
     <request-character-encoding>UTF-8</request-character-encoding>
     <response-character-encoding>UTF-8</response-character-encoding>
 </web-app>

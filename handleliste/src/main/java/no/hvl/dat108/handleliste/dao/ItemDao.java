@@ -1,6 +1,7 @@
-package dao;
+package no.hvl.dat108.handleliste.dao;
 
-import model.Item;
+
+import no.hvl.dat108.handleliste.model.Item;
 
 import java.util.List;
 

@@ -1,25 +1,26 @@
-package controller;
+package no.hvl.dat108.handleliste.controller;
 
-import helper.Handleliste.*;
+import no.hvl.dat108.handleliste.Handleliste.Loc;
+import no.hvl.dat108.handleliste.Handleliste.UrlPattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static helper.Sessions.getNewSession;
+import static no.hvl.dat108.handleliste.helper.Sessions.getNewSession;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends BaseServlet {
 
     static String HANDLELISTE_PASSORD;
 
     @Override
     public void init() throws ServletException {
+        super.init();
         HANDLELISTE_PASSORD = getServletContext().getInitParameter("passord");
     }
 

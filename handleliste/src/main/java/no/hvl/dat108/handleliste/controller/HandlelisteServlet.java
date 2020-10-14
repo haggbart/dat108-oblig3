@@ -1,20 +1,19 @@
-package controller;
+package no.hvl.dat108.handleliste.controller;
 
 
-import helper.Handleliste.*;
-import service.HandlelisteService;
+import no.hvl.dat108.handleliste.Handleliste.UrlPattern;
+import no.hvl.dat108.handleliste.service.HandlelisteService;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "HandlelisteServlet", urlPatterns = "/handleliste")
-public class HandlelisteServlet extends HttpServlet {
+public class HandlelisteServlet extends BaseServlet {
 
     @EJB
     private HandlelisteService handlelisteService;
