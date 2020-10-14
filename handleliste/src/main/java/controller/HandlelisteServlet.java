@@ -1,6 +1,7 @@
 package controller;
 
 
+import helper.Handleliste.*;
 import service.HandlelisteService;
 
 import javax.ejb.EJB;
@@ -23,7 +24,7 @@ public class HandlelisteServlet extends HttpServlet {
         String beskrivelse = request.getParameter("beskrivelse");
         if (beskrivelse != null) {
             handlelisteService.addItem(beskrivelse);
-            response.sendRedirect("handleliste");
+            response.sendRedirect(UrlPattern.HANDLELISTE);
             return;
         }
 
@@ -31,7 +32,7 @@ public class HandlelisteServlet extends HttpServlet {
         if (itemId != null) {
             handlelisteService.deleteItem(itemId);
         }
-        response.sendRedirect("handleliste");
+        response.sendRedirect(UrlPattern.HANDLELISTE);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package controller;
 
+import helper.Handleliste.*;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +21,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         HANDLELISTE_PASSORD = getServletContext().getInitParameter("passord");
-        System.out.println("set password: " + HANDLELISTE_PASSORD);
     }
 
     @Override
@@ -29,13 +30,13 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = getNewSession(request);
 
         if (!password.equals(HANDLELISTE_PASSORD)) {
-            session.setAttribute("message", "Feil passord");
-            response.sendRedirect("login");
+            session.setAttribute("message", Loc.WRONG_PASSWORD);
+            response.sendRedirect(UrlPattern.LOGIN);
             return;
         }
 
         session.setAttribute("loginInfo", "asfd");
-        response.sendRedirect("handleliste");
+        response.sendRedirect(UrlPattern.HANDLELISTE);
     }
 
     @Override

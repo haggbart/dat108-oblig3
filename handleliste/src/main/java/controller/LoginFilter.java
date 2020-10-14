@@ -1,5 +1,7 @@
 package controller;
 
+import helper.Handleliste.*;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -7,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static helper.Sessions.*;
+import static helper.Sessions.getNewSession;
+import static helper.Sessions.isLoggedIn;
 
 @WebFilter(filterName = "LoginFilter", urlPatterns = "/handleliste")
 public class LoginFilter implements Filter {
@@ -23,8 +26,8 @@ public class LoginFilter implements Filter {
         }
         HttpSession session = getNewSession(httpRequest);
 
-        session.setAttribute("message", "Du må være logget inn for å bruke handlelisten");
+        session.setAttribute("message", Loc.NOT_LOGGED_IN);
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.sendRedirect("login");
+        httpResponse.sendRedirect(UrlPattern.LOGIN);
     }
 }

@@ -2,30 +2,15 @@ package dao;
 
 import model.Item;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Stateless
-public class ItemDao {
+public interface ItemDao {
 
-    @PersistenceContext
-    private EntityManager em;
+    Item get(int id);
 
-    public Item get(int id) {
-        return em.find(Item.class, id);
-    }
+    List<Item> getAll();
 
-    public List<Item> getAll() {
-        return em.createNamedQuery("Item.getAll", Item.class).getResultList();
-    }
+    void save(Item item);
 
-    public void save(Item item) {
-        em.persist(item);
-    }
-
-    public void delete(Item item) {
-        em.remove(item);
-    }
+    void delete(Item item);
 }
