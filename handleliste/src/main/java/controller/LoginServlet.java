@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static helper.Sessions.getNewSession;
+
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
@@ -20,21 +22,23 @@ public class LoginServlet extends HttpServlet {
         System.out.println("set password: " + HANDLELISTE_PASSORD);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String password = request.getParameter("password");
+        HttpSession session = getNewSession(request);
 
-        HttpSession session = request.getSession();
-
-        if (password.equals(HANDLELISTE_PASSORD)) {
-            session.setAttribute("loginInfo", "asfd");
-            response.sendRedirect("handleliste");
-        } else {
-            session.setAttribute("message", "Feil brukernavn og/eller passord.");
+        if (!password.equals(HANDLELISTE_PASSORD)) {
+            session.setAttribute("message", "Feil passord");
             response.sendRedirect("login");
+            return;
         }
+
+        session.setAttribute("loginInfo", "asfd");
+        response.sendRedirect("handleliste");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");

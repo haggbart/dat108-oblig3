@@ -1,6 +1,6 @@
 package helper;
 
-public class Utils {
+public class Utilities {
 
     public static int tryParse(String s) {
         try {

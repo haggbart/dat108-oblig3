@@ -7,7 +7,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
 
-import static helper.Utils.tryParse;
+import static helper.Utilities.tryParse;
 import static org.apache.commons.text.StringEscapeUtils.escapeHtml4;
 
 @Stateless

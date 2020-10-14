@@ -19,7 +19,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-pen"></i></span>
                 </div>
-                <input type="text" name="beskrivelse" class="form-control" placeholder="Legg til">
+                <input type="text" name="beskrivelse" class="form-control" placeholder="Legg til" autocomplete="off" required>
             </div>
         </form>
 
