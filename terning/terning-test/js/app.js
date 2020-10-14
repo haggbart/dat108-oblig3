@@ -13,14 +13,11 @@ class DiceController {
      * @param {String} idElement - Id til htmlelement DiceController tar utgangspunkt fra.
      */
     constructor(idElement) {
-        // binder funksjonen run til konteksten til objektet som run allerede er bundet til
+        // binder funksjonen run og rollDice til konteksten til objektet de allerede er bundet til
         this.run = this.run.bind(this);
-        this.root = document.getElementById(idElement);
+        this.rollDice = this.rollDice.bind(this);
 
-        /*
-        Disse kunne vært definert lokalt i run, men de hører til DiceControlller
-        og hvis klassen skal utvides er det fint at de er tilgjengelige.
-         */
+        this.root = document.getElementById(idElement);
         this.button = this.root.querySelector('button[data-dicebutton]')
         this.output = this.root.querySelector('span[data-diceoutput]');
         this.dice = new Dice();
@@ -30,9 +27,15 @@ class DiceController {
      * Kjøres etter siden er lastet inn i nettleseren sin hukommelse.
      */
     run() {
-        this.button.addEventListener('click', () => {
-            this.output.innerHTML = this.dice.roll();
-        });
+        this.button.addEventListener('click', this.rollDice);
+    }
+
+
+    /**
+     * Ruller terning og endrer innholdet i html span med custom data-attributt, "data-diceoutput"
+     */
+    rollDice() {
+        this.output.innerHTML = this.dice.roll();
     }
 }
 
