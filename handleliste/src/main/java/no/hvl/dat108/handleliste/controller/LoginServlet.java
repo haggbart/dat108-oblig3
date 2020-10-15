@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static no.hvl.dat108.handleliste.helper.Sessions.isLoggedIn;
+import static no.hvl.dat108.handleliste.helper.Sessions.loggedIn;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (isLoggedIn(request.getSession(false))) {
+        if (loggedIn(request.getSession(false))) {
             response.sendRedirect(UrlPattern.HANDLELISTE);
             return;
         }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static no.hvl.dat108.handleliste.helper.Sessions.isLoggedIn;
+import static no.hvl.dat108.handleliste.helper.Sessions.loggedIn;
 import static no.hvl.dat108.handleliste.helper.Sessions.sessionExpired;
 
 @WebFilter(filterName = "LoginFilter", urlPatterns = "/handleliste")
@@ -27,7 +27,7 @@ public class LoginFilter implements Filter {
 
         if (sessionExpired(request)) {
             message = Loc.SESSION_EXPIRED;
-        } else if (!isLoggedIn(session)) {
+        } else if (!loggedIn(session)) {
             message = Loc.NOT_LOGGED_IN;
         } else {
             chain.doFilter(req, resp);

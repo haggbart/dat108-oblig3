@@ -8,7 +8,7 @@
         <!-- Minutter -->
         <session-timeout>1</session-timeout>
     </session-config>
-    
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>no.hvl.dat108.handleliste.controller.LoginServlet</servlet-class>
@@ -17,6 +17,7 @@
             <param-value>1234</param-value>
         </init-param>
     </servlet>
+
     <request-character-encoding>UTF-8</request-character-encoding>
     <response-character-encoding>UTF-8</response-character-encoding>
 </web-app>

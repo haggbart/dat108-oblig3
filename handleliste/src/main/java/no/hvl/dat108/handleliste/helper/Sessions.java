@@ -9,7 +9,7 @@ public class Sessions {
         return request.getRequestedSessionId() != null && !request.isRequestedSessionIdValid();
     }
 
-    public static boolean isLoggedIn(HttpSession session) {
+    public static boolean loggedIn(HttpSession session) {
         return (session != null && session.getAttribute("user") != null);
     }
 }
