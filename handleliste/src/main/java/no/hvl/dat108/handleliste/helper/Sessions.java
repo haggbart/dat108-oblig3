@@ -5,18 +5,11 @@ import javax.servlet.http.HttpSession;
 
 public class Sessions {
 
-    public static boolean initialized;
-
-    public static boolean isLoggedIn(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        return session != null && session.getAttribute("user") != null;
+    public static boolean sessionExpired(HttpServletRequest request) {
+        return request.getRequestedSessionId() != null && !request.isRequestedSessionIdValid();
     }
 
-//    public static HttpSession getNewSession(HttpServletRequest request) {
-//        HttpSession session = request.getSession(false);
-//        if (session != null)
-//            session.invalidate();
-//        session = request.getSession(true);
-//        return session;
-//    }
+    public static boolean isLoggedIn(HttpSession session) {
+        return (session != null && session.getAttribute("user") != null);
+    }
 }
