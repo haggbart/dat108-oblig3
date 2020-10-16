@@ -1,6 +1,6 @@
 package no.hvl.dat108.handleliste.controller;
 
-import no.hvl.dat108.handleliste.Handleliste;
+import no.hvl.dat108.handleliste.Handleliste.Loc;
 import no.hvl.dat108.handleliste.Handleliste.UrlPattern;
 
 import javax.servlet.*;
@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static no.hvl.dat108.handleliste.helper.Sessions.loggedIn;
+import static no.hvl.dat108.handleliste.helper.Sessions.sessionExpired;
 
 @WebFilter(filterName = "LoginFilter", urlPatterns = "/handleliste")
 public class LoginFilter implements Filter {
@@ -22,10 +25,10 @@ public class LoginFilter implements Filter {
 
         String message;
 
-        if (request.getRequestedSessionId() != null && !request.isRequestedSessionIdValid()) {
-            message = "Utløpt sesjon, vennligst logg inn på nytt";
-        } else if (session == null || session.getAttribute("user") == null) {
-            message = Handleliste.Loc.NOT_LOGGED_IN;
+        if (sessionExpired(request)) {
+            message = Loc.SESSION_EXPIRED;
+        } else if (!loggedIn(session)) {
+            message = Loc.NOT_LOGGED_IN;
         } else {
             chain.doFilter(req, resp);
             return;

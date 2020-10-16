@@ -19,15 +19,13 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-pen"></i></span>
                 </div>
-                <input type="text" name="beskrivelse" class="form-control" placeholder="Legg til" autocomplete="off" required>
+                <input class="form-control" type="text" name="beskrivelse"  placeholder="Legg til" autocomplete="off" required>
             </div>
         </form>
 
         <form action="handleliste" method="post">
             <ul class="list-group mx-auto">
-
                 <c:forEach items="${requestScope.handleliste}" var="item">
-
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <span>${item}</span>
                         <button type="submit" name="item" value="${item.id}" class="btn">
