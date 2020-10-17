@@ -5,7 +5,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/fontawesome.all.js"></script>
+    <script src="js/fontawesome.all.js" defer></script>
     <title>Login</title>
 </head>
 <body>
