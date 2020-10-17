@@ -10,14 +10,14 @@ class DiceController {
 
     /**
      *
-     * @param {String} idElement - Id til htmlelement DiceController tar utgangspunkt fra.
+     * @param {String} elementId - Id til htmlelement DiceController tar utgangspunkt fra.
      */
-    constructor(idElement) {
+    constructor(elementId) {
         // binder funksjonen run og rollDice til konteksten til objektet de allerede er bundet til
         this.run = this.run.bind(this);
         this.rollDice = this.rollDice.bind(this);
 
-        this.root = document.getElementById(idElement);
+        this.root = document.getElementById(elementId);
         this.button = this.root.querySelector('*[data-dicebutton]')
         this.output = this.root.querySelector('*[data-diceoutput]');
         this.dice = new Dice();
@@ -45,7 +45,7 @@ class DiceController {
  * @author Le beste gruppen
  */
 class Dice {
-    roll = () => ((Math.random() * 6 + 1)|0).toString();
+    roll = () => ((Math.random() * 6 + 1)|0);
 }
 
 const controller = new DiceController("root");
